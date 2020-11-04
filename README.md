@@ -20,6 +20,7 @@ This project was built to learn Grails
     - Spring
     - Hibernate
     - GSP
+    - Maven
 * JavaScript
     - jQuery
 * CSS    
