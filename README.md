@@ -16,9 +16,13 @@ This project was built to learn Grails
 
 ## Built with
 * Grails
+    - Tomcat
     - Spring
     - Hibernate
     - GSP
+* JavaScript
+    - jQuery
+* CSS    
 * Database
     - PostgreSQL    
 * Design pattern
