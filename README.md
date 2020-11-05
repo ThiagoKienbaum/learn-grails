@@ -25,7 +25,7 @@ This project was built to learn Grails
     - jQuery
 * CSS    
 * Database
-    - PostgreSQL    
+    - MySQL    
 * Design pattern
     - MVC
 * Others    
