@@ -5,6 +5,8 @@ class Pedido {
     Double valorTotal
     Cliente cliente
 
+    static hasMany = [itens: ItemPedido]
+
     static constraints = {
     }
 }

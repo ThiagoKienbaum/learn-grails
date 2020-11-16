@@ -7,7 +7,7 @@ class Produto {
 
 //    static hasOne = [estoque: Estoque]
 
-    static hasMany = [clientes: Cliente]
+    static hasMany = [clientes: Cliente, itens: ItemPedido]
 
     static belongsTo = [Cliente]
 
