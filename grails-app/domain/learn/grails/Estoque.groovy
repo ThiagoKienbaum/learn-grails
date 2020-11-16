@@ -7,4 +7,9 @@ class Estoque {
 
     static constraints = {
     }
+
+//    static mapping = {
+//        table name: "est_estoque"
+//        id column: "id_estoque"
+//    }
 }

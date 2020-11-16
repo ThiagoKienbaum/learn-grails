@@ -5,6 +5,8 @@ class Produto {
     Double preco
     Estoque estoque
 
+//    static hasOne = [estoque: Estoque]
+
     static constraints = {
     }
 }
