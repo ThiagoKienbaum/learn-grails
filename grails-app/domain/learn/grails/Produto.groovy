@@ -7,6 +7,10 @@ class Produto {
 
 //    static hasOne = [estoque: Estoque]
 
+    static hasMany = [clientes: Cliente]
+
+    static belongsTo = [Cliente]
+
     static constraints = {
     }
 }
