@@ -1,6 +1,6 @@
 package learn.grails
 
-class Sobremesa {
+class Sobremesa extends Produto {
     Integer calorias
 
     static constraints = {

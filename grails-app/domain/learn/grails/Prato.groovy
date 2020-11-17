@@ -1,6 +1,6 @@
 package learn.grails
 
-class Prato {
+class Prato extends Produto {
     Integer quantidadePessoas
 
     static constraints = {

@@ -1,6 +1,6 @@
 package learn.grails
 
-class Bebida {
+class Bebida extends Produto {
     Double volume
     String unidade
 
