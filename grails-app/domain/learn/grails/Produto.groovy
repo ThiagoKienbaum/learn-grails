@@ -15,4 +15,8 @@ class Produto {
         nome nullable: false, blank: false
         preco min: new Double(0)
     }
+
+    static mapping = {
+        discriminator column: "tipo", value: "GERAL"
+    }
 }

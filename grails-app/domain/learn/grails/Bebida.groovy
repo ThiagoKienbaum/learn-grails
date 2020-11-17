@@ -8,4 +8,8 @@ class Bebida extends Produto {
         volume min: new Double(0)
         unidade nullable:false, blank: false, inList: ["l", "ml"]
     }
+
+    static mapping = {
+        discriminator value: "BEBIDA"
+    }
 }

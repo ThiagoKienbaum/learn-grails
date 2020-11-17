@@ -6,4 +6,8 @@ class Sobremesa extends Produto {
     static constraints = {
         calorias min: 0
     }
+
+    static mapping = {
+        discriminator value: "SOBREMESA"
+    }
 }
