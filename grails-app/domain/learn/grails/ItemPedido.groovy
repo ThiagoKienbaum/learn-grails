@@ -10,6 +10,9 @@ class ItemPedido {
     static belongsTo = [Pedido]
 
     static constraints = {
+        quantidade min: 0
+        valorVenda min: new Double(0)
+        observacao nullable: true, blank: true
     }
 
     static mapping = {

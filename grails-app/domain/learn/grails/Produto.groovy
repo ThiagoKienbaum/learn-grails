@@ -12,5 +12,7 @@ class Produto {
     static belongsTo = [Cliente]
 
     static constraints = {
+        nome nullable: false, blank: false
+        preco min: new Double(0)
     }
 }
