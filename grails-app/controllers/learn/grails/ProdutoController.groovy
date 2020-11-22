@@ -18,16 +18,17 @@ class ProdutoController {
         render(template:"/produto/form", model: [produto: novoProduto])
     }
 
-    def lista() {
-        def lista = Produto.list()
-        render(template: "/produto/list", model: [produtos: lista])
-    }
-
     def salvar() {
-        Produto produto = new Produto()
+        Produto produto
+        if (params.id) {
+            produto = Produto.get(params.id)
+        } else {
+            produto = new Produto()
+            produto.estoque = new Estoque()
+        }
+
         produto.nome = params.nome
         produto.preco = params.preco.toDouble()
-        produto.estoque = new Estoque()
         produto.estoque.quantidade = params.quantidade.toInteger()
         produto.estoque.quantidadeMinima = params.quantidadeMinima.toInteger()
 
@@ -38,5 +39,16 @@ class ProdutoController {
         } else {
             render("Foram encontrados erros no cadastro")
         }
+    }
+
+    def lista() {
+        def lista = Produto.list()
+        render(template: "/produto/list", model: [produtos: lista])
+    }
+
+    def alterar() {
+        Produto produto = Produto.get(params.id)
+
+        render(template: "/produto/form", model: [produto: produto])
     }
 }
