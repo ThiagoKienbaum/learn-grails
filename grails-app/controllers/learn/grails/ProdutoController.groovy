@@ -51,4 +51,11 @@ class ProdutoController {
 
         render(template: "/produto/form", model: [produto: produto])
     }
+
+    def excluir() {
+        Produto produto = Produto.get(params.id)
+        produto.delete(flush: true)
+
+        lista()
+    }
 }
