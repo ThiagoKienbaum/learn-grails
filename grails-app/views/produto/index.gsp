@@ -15,6 +15,10 @@
                     <g:remoteFunction controller="produto" action="excluir" update="divList" id="'+id+'"/>
                 }
             }
+
+            function cancelar() {
+                jQuery("#divForm").html("")
+            }
         </script>
     </head>
     <body>

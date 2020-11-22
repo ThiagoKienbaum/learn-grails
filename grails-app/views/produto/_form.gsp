@@ -5,6 +5,6 @@
     Qtd atual <input type="text" name="quantidade" value="${produto.estoque?.quantidade}" /> <br/>
     Qtd mínima <input type="text" name="quantidadeMinima" value="${produto?.estoque.quantidadeMinima}" /> <br/>
     <input type="submit" name="btnSalvar" value="Salvar"/>
-    <input type="button" name="btnCancelar" value="Cancelar"/>
+    <input type="button" name="btnCancelar" value="Cancelar" onclick="cancelar()"/>
     <input type="hidden" name="id" value="${produto.id}"/>
 </g:formRemote>
