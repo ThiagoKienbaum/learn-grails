@@ -6,7 +6,7 @@
 	    <g:javascript library="jquery"/>
     </head>
     <body>
-        <a href="#">Adicionar</a>
+        <g:remoteLink controller="produto" action="adicionar" update="divForm">Adicionar</g:remoteLink>
 
     <div id="divList">
         <g:render template="list" model="[produtos: produtos]"/>

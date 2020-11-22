@@ -11,8 +11,8 @@
             <tr>
                 <td>${produto.nome}</td>
                 <td>${produto.preco}</td>
-                <td>${produto.estoque.quantidade}</td>
-                <td>${produto.estoque.quantidadeMinima}</td>
+                <td>${produto.estoque?.quantidade}</td>
+                <td>${produto.estoque?.quantidadeMinima}</td>
                 <td>
                     <a href="#">Alterar</a>
                     <a href="#">Excluir</a>
