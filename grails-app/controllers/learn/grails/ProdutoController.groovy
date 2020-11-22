@@ -18,6 +18,11 @@ class ProdutoController {
         render(template:"/produto/form", model: [produto: novoProduto])
     }
 
+    def lista() {
+        def lista = Produto.list()
+        render(template: "/produto/list", model: [produtos: lista])
+    }
+
     def salvar() {
         Produto produto = new Produto()
         produto.nome = params.nome
