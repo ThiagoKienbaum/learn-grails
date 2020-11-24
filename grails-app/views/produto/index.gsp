@@ -3,7 +3,7 @@
     <head>
         <meta name="layout" content="main"/>
         <title>Learn Grails</title>
-	    <g:javascript library="jquery"/>
+        <g:javascript library="jquery" plugin="jquery"/>
 
         <script type="text/javascript">
             function carregarLista() {
