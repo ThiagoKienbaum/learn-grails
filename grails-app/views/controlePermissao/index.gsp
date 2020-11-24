@@ -34,12 +34,24 @@
 
         <script type="text/javascript">
             $(document).ready(function() {
-
+                carregarListaUsuarios()
             })
+            function carregarListaUsuarios() {
+                $.ajax({
+                    method: "POST",
+                    url: "listar",
+                    data: {},
+                    success: function (data) {
+                        $("divListaUsuario").html(data)
+                    }
+                })
+            }
 
             function retornoSalvarUsuario(data) {
                 if (data.mensagem == "OK") {
                     $("#divMensagemUsuario").html("Usuário salvo com sucesso.")
+                    $("input[name= login]").val("")
+                    carregarListaUsuarios()
                 } else {
                     $("#divMensagemUsuario").html("Não foi possível salvar.")
                 }
@@ -56,17 +68,7 @@
                     <input type="submit" name="salvar" value="Salvar"/>
                 </g:formRemote>
             </div>
-
-            <table>
-                <thead>
-                    <th>Username</th>
-                </thead>
-                <g:each in="${usuarios}" var="usuario">
-                    <tr>
-                        <td>${usuario.username}</td>
-                    </tr>
-                </g:each>
-            </table>
+            <div id="divListaUsuario"></div>
         </div>
 
         <div id="divDetalhesUsuarios">

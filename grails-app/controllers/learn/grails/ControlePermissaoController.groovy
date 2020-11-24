@@ -13,6 +13,12 @@ class ControlePermissaoController {
         render(view: "/controlePermissao/index", model: [usuarios: listaUsuarios, permissoes: listaPermissoes])
     }
 
+    def listar() {
+        def listaUsuarios = Usuario.list()
+
+        render(template: "listaUsuarios", model: [usuarios: listaUsuarios])
+    }
+
     def salvarUsuario() {
         Map retorno = [:]
 
