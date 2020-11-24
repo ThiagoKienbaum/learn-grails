@@ -38,7 +38,11 @@
             })
 
             function retornoSalvarUsuario(data) {
-
+                if (data.mensagem == "OK") {
+                    $("#divMensagemUsuario").html("Usuário salvo com sucesso.")
+                } else {
+                    $("#divMensagemUsuario").html("Não foi possível salvar.")
+                }
             }
         </script>
     </head>
@@ -46,6 +50,7 @@
     <body>
         <div id="divUsuarios">
             <div id="formUsuario">
+                <div id="divMensagemUsuario"></div>
                 <g:formRemote name="formUsuario" url="[controller: 'controlePermissao', action: 'salvarUsuario']" onSuccess="retornoSalvarUsuario(data)">
                     Login <input type="text" name="login" value=""/>
                     <input type="submit" name="salvar" value="Salvar"/>
