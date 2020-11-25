@@ -14,7 +14,7 @@
                 margin-right: 5%;
             }
 
-            #formUsuario {
+            #divFormUsuario, #divFormPermissao {
                 padding: 5px;
             }
 
@@ -35,7 +35,9 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 carregarListaUsuarios()
+                carregarListaPermissoes()
             })
+
             function carregarListaUsuarios() {
                 $.ajax({
                     method: "POST",
@@ -56,12 +58,33 @@
                     $("#divMensagemUsuario").html("Não foi possível salvar.")
                 }
             }
+
+            function carregarListaPermissoes() {
+                $.ajax({
+                    method: "POST",
+                    url: "listarPermissao",
+                    data: {},
+                    success: function (data) {
+                        $("divListaPermissao").html(data)
+                    }
+                })
+            }
+
+            function retornoSalvarPermissao(data) {
+                if (data.mensagem == "OK") {
+                    $("#divMensagemPermissao").html("Permissão salva com sucesso.")
+                    $("input[name= permissao]").val("")
+                    carregarListaPermissoes()
+                } else {
+                    $("#divMensagemPermissao").html("Não foi possível salvar.")
+                }
+            }
         </script>
     </head>
 
     <body>
         <div id="divUsuarios">
-            <div id="formUsuario">
+            <div id="divFormUsuario">
                 <div id="divMensagemUsuario"></div>
                 <g:formRemote name="formUsuario" url="[controller: 'controlePermissao', action: 'salvarUsuario']" onSuccess="retornoSalvarUsuario(data)">
                     Login <input type="text" name="login" value=""/>
@@ -85,16 +108,14 @@
         </div>
 
         <div id="divPermissoes">
-            <table>
-                <thead>
-                <th>Permissão</th>
-                </thead>
-                <g:each in="${permissoes}" var="permissao">
-                    <tr>
-                        <td>${permissao.authority}</td>
-                    </tr>
-                </g:each>
-            </table>
+            <div id="divFormPermissao">
+                <div id="divMensagemPermissao"></div>
+                <g:formRemote name="formPermissao" url="[controller: 'controlePermissao', action: 'salvarPermissao']" onSuccess="retornoSalvarPermissao(data)">
+                    Permissão <input type="text" name="permissao" value=""/>
+                    <input type="submit" name="salvar" value="Salvar"/>
+                </g:formRemote>
+            </div>
+            <div id="divListaPermissao"></div>
         </div>
     </body>
 </html>
