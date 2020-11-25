@@ -43,8 +43,8 @@
                     method: "POST",
                     url: "listarUsuario",
                     data: {},
-                    success: function (data) {
-                        $("divListaUsuario").html(data)
+                    success: function(data) {
+                        $("#divListaUsuario").html(data)
                     }
                 })
             }
@@ -64,8 +64,8 @@
                     method: "POST",
                     url: "listarPermissao",
                     data: {},
-                    success: function (data) {
-                        $("divListaPermissao").html(data)
+                    success: function(data) {
+                        $("#divListaPermissao").html(data)
                     }
                 })
             }

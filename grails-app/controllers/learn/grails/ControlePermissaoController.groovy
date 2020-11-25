@@ -7,7 +7,7 @@ import grails.converters.JSON
 class ControlePermissaoController {
 
     def index() {
-        render(view: "/index")
+        render(view: "index")
     }
 
     def salvarUsuario() {
@@ -33,7 +33,7 @@ class ControlePermissaoController {
     }
 
     def listarUsuario() {
-        def listaUsuarios = Usuario.createCriteria().list{
+        def listaUsuarios = Usuario.createCriteria().list {
             order("username")
         }
 
@@ -65,6 +65,7 @@ class ControlePermissaoController {
 
     def listarPermissao() {
         def listaPermissoes = Permissao.list()
+
         render(template: "listaPermissoes", model: [permissoes: listaPermissoes])
     }
 
@@ -75,8 +76,4 @@ class ControlePermissaoController {
     def excluirPermissao() {
 
     }
-
-
-
-
 }
