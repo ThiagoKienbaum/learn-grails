@@ -39,7 +39,7 @@
             function carregarListaUsuarios() {
                 $.ajax({
                     method: "POST",
-                    url: "listar",
+                    url: "listarUsuario",
                     data: {},
                     success: function (data) {
                         $("divListaUsuario").html(data)

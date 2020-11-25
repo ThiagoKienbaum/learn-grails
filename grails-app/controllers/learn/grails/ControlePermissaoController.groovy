@@ -7,14 +7,15 @@ import grails.converters.JSON
 class ControlePermissaoController {
 
     def index() {
-        def listaUsuarios = Usuario.list()
         def listaPermissoes = Permissao.list()
 
-        render(view: "/controlePermissao/index", model: [usuarios: listaUsuarios, permissoes: listaPermissoes])
+        render(view: "/controlePermissao/index", model: [permissoes: listaPermissoes])
     }
 
-    def listar() {
-        def listaUsuarios = Usuario.list()
+    def listarUsuario() {
+        def listaUsuarios = Usuario.createCriteria().list {
+            order("username")
+        }
 
         render(template: "listaUsuarios", model: [usuarios: listaUsuarios])
     }
