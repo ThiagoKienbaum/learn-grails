@@ -59,6 +59,22 @@
                 }
             }
 
+            function excluirUsuario(id) {
+                if (confirm("Deseja realmente excluir o usuario?")) {
+                    $.ajax({
+                        method: "POST",
+                        url: "excluirUsuario",
+                        data: { "id": id },
+                        success: function(data) {
+                            if(data.mensagem == "OK") {
+                                carregarListaUsuarios()
+                            } else {
+                                $("#divMensagemUsuario").html("Não foi possível excluir")
+                            }
+                        }
+                    })}
+            }
+
             function carregarListaPermissoes() {
                 $.ajax({
                     method: "POST",
@@ -115,8 +131,9 @@
         <div id="divUsuarios">
             <div id="divFormUsuario">
                 <div id="divMensagemUsuario"></div>
-                <g:formRemote name="formUsuario" url="[controller: 'controlePermissao', action: 'salvarUsuario']" onSuccess="retornoSalvarUsuario(data)">
+                <g:formRemote id="formUsuario" name="formUsuario" url="[controller: 'controlePermissao', action: 'salvarUsuario']" onSuccess="retornoSalvarUsuario(data)">
                     Login <input type="text" name="login" value=""/>
+                    <input type="hidden" name="id"/>
                     <input type="submit" name="salvar" value="Salvar"/>
                 </g:formRemote>
             </div>

@@ -47,7 +47,15 @@ class ControlePermissaoController {
     }
 
     def excluirUsuario() {
-
+        Map retorno = [:]
+        Usuario usuario = Usuario.get(params.id)
+        try {
+            usuario.delete()
+            retorno.mensagem = "OK"
+        } catch(Exception exception) {
+            retorno.mensagem = "ERRO"
+        }
+        render retorno as JSON
     }
 
     def salvarPermissao() {
