@@ -28,15 +28,17 @@ class ControlePermissaoController {
             usuario.save(flush: true)
             retorno.mensagem = "OK"
         }
-
         render retorno as JSON
+    }
+
+    def getUsuario() {
+
     }
 
     def listarUsuario() {
         def listaUsuarios = Usuario.createCriteria().list {
             order("username")
         }
-
         render(template: "listaUsuarios", model: [usuarios: listaUsuarios])
     }
 
@@ -51,7 +53,15 @@ class ControlePermissaoController {
     def salvarPermissao() {
         Map retorno = [:]
 
-        Permissao permissao = new Permissao()
+
+        Permissao permissao
+
+        if (params.id) {
+            permissao = Permissao.get(params.id)
+        } else {
+            permissao = new Permissao()
+        }
+
         permissao.authority = params.permissao
         permissao.validate()
 
@@ -61,11 +71,18 @@ class ControlePermissaoController {
             permissao.save(flush: true)
             retorno.mensagem = "OK"
         }
+        render retorno as JSON
+    }
+
+    def getPermissao() {
+        Permissao permissao = Permissao.get(params.id)
+        render permissao as JSON
     }
 
     def listarPermissao() {
-        def listaPermissoes = Permissao.list()
-
+        def listaPermissoes = Permissao.createCriteria().list {
+            order("authority")
+        }
         render(template: "listaPermissoes", model: [permissoes: listaPermissoes])
     }
 
