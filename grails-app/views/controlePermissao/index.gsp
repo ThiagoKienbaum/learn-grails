@@ -92,6 +92,22 @@
                     }
                 })
             }
+
+            function excluirPermissao(id) {
+                if (confirm("Deseja realmente excluir a permissão?")) {
+                    $.ajax({
+                    method: "POST",
+                    url: "excluirPermissao",
+                    data: { "id": id },
+                    success: function(data) {
+                        if(data.mensagem == "OK") {
+                            carregarListaPermissoes()
+                        } else {
+                            $("#divMensagemPermissao").html("Não foi possível excluir")
+                        }
+                    }
+                })}
+            }
         </script>
     </head>
 

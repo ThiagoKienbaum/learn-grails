@@ -86,11 +86,15 @@ class ControlePermissaoController {
         render(template: "listaPermissoes", model: [permissoes: listaPermissoes])
     }
 
-    def alterarPermissao() {
-
-    }
-
     def excluirPermissao() {
-
+        Map retorno = [:]
+        Permissao permissao = Permissao.get(params.id)
+        try {
+            permissao.delete()
+            retorno.mensagem = "OK"
+        } catch(Exception exception) {
+            retorno.mensagem = "ERRO"
+        }
+        render retorno as JSON
     }
 }
