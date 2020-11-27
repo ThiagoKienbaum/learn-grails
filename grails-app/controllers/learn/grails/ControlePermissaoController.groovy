@@ -12,14 +12,20 @@ class ControlePermissaoController {
 
     def salvarUsuario() {
         Map retorno = [:]
+        Usuario usuario
 
-        Usuario usuario = new Usuario()
+        if(params.id) {
+            usuario = Usuario.get(params.id)
+        } else {
+            usuario = new Usuario()
+            usuario.enabled = true
+            usuario.passwordExpired = false
+            usuario.accountExpired = false
+            usuario.accountLocked = false
+            usuario.password = "1234"
+        }
+
         usuario.username = params.login
-        usuario.enabled = true
-        usuario.passwordExpired = false
-        usuario.accountExpired = false
-        usuario.accountLocked = false
-        usuario.password = "1234"
         usuario.validate()
 
         if (usuario.hasErrors()) {
@@ -32,7 +38,8 @@ class ControlePermissaoController {
     }
 
     def getUsuario() {
-
+        Usuario usuario = Usuario.get(params.id)
+        render usuario as JSON
     }
 
     def listarUsuario() {
@@ -40,10 +47,6 @@ class ControlePermissaoController {
             order("username")
         }
         render(template: "listaUsuarios", model: [usuarios: listaUsuarios])
-    }
-
-    def alterarUsuario() {
-
     }
 
     def excluirUsuario() {
@@ -60,8 +63,6 @@ class ControlePermissaoController {
 
     def salvarPermissao() {
         Map retorno = [:]
-
-
         Permissao permissao
 
         if (params.id) {

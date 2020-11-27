@@ -53,10 +53,23 @@
                 if (data.mensagem == "OK") {
                     $("#divMensagemUsuario").html("Usuário salvo com sucesso.")
                     $("input[name= login]").val("")
+                    $("input[name= id]").val("")
                     carregarListaUsuarios()
                 } else {
                     $("#divMensagemUsuario").html("Não foi possível salvar.")
                 }
+            }
+
+            function alterarUsuario(id) {
+                $.ajax({
+                    method: "POST",
+                    url: "getUsuario",
+                    data: { "id": id },
+                    success: function(data) {
+                        $("#formUsuario input[name = login]").val(data.username)
+                        $("#formUsuario input[name = id]").val(data.id)
+                    }
+                })
             }
 
             function excluirUsuario(id) {
