@@ -19,14 +19,14 @@
             }
 
             #divDetalhesUsuarios {
-                width: 30%;
+                width: 20%;
                 float: left;
                 border: 1px solid #000;
                 margin-right: 4%;
             }
 
             #divPermissoes {
-                width: 30%;
+                width: 40%;
                 float: right;
                 border: 1px solid #000;
             }
@@ -90,6 +90,22 @@
                             }
                         }
                     })}
+            }
+
+            function vincularPermissao(permissaoId) {
+                var usuarioId = $("#formUsuario input[name = id]").val()
+                $.ajax({
+                    method: "POST",
+                    url: "vincularPermissao",
+                    data: {"permissaoId": permissaoId, "usuarioId": usuarioId},
+                    success: function(data) {
+                        if(data.mensagem == "OK") {
+                            alterarUsuario(usuarioId)
+                        } else {
+                            $("#divMensagemPermissao").html("Não foi possível vincular a permissão")
+                        }
+                    }
+                })
             }
 
             function carregarListaPermissoes() {

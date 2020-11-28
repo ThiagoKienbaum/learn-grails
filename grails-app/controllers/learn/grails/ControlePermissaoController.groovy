@@ -2,6 +2,7 @@ package learn.grails
 
 import core.Permissao
 import core.Usuario
+import core.UsuarioPermissao
 import grails.converters.JSON
 
 class ControlePermissaoController {
@@ -60,6 +61,20 @@ class ControlePermissaoController {
             usuario.delete()
             retorno.mensagem = "OK"
         } catch(Exception exception) {
+            retorno.mensagem = "ERRO"
+        }
+        render retorno as JSON
+    }
+
+    def vincularPermissao() {
+        Map retorno = [:]
+        Usuario usuario = Usuario.get(params.usuarioId)
+        Permissao permissao = Permissao.get(params.permissaoId)
+
+        try {
+            UsuarioPermissao.create(usuario, permissao)
+            retorno.mensagem = "OK"
+        } catch (Exception exception) {
             retorno.mensagem = "ERRO"
         }
         render retorno as JSON
