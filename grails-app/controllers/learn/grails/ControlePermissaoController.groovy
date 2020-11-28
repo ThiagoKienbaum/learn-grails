@@ -80,6 +80,23 @@ class ControlePermissaoController {
         render retorno as JSON
     }
 
+    def desvincularPermissao() {
+        Map retorno = [:]
+        Usuario usuario = Usuario.get(params.usuarioId)
+        Permissao permissao = Permissao.get(params.permissaoId)
+
+        try {
+            if(UsuarioPermissao.remove(usuario, permissao)) {
+                retorno.mensagem = "OK"
+            } else {
+                retorno.mensagem = "ERRO"
+            }
+        } catch (Exception exception) {
+            retorno.mensagem = "ERRO"
+        }
+        render retorno as JSON
+    }
+
     def salvarPermissao() {
         Map retorno = [:]
         Permissao permissao

@@ -70,7 +70,7 @@
                         $("#formUsuario input[name = id]").val(data.usuario.id)
                         $("#divDetalhesUsuarios").html("")
                         data.permissoes.forEach(permissao => {
-                            $("#divDetalhesUsuarios").append(permissao.authority + "<br/>")
+                            $("#divDetalhesUsuarios").append(permissao.authority + "<a href='javascript: desvincularPermissao("+permissao.id+")'> X</a><br/>")
                         })
                     }
                 })
@@ -97,6 +97,22 @@
                 $.ajax({
                     method: "POST",
                     url: "vincularPermissao",
+                    data: {"permissaoId": permissaoId, "usuarioId": usuarioId},
+                    success: function(data) {
+                        if(data.mensagem == "OK") {
+                            alterarUsuario(usuarioId)
+                        } else {
+                            $("#divMensagemPermissao").html("Não foi possível vincular a permissão")
+                        }
+                    }
+                })
+            }
+
+            function desvincularPermissao(permissaoId) {
+                var usuarioId = $("#formUsuario input[name = id]").val()
+                $.ajax({
+                    method: "POST",
+                    url: "desvincularPermissao",
                     data: {"permissaoId": permissaoId, "usuarioId": usuarioId},
                     success: function(data) {
                         if(data.mensagem == "OK") {
