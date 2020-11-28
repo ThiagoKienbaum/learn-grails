@@ -39,7 +39,11 @@ class ControlePermissaoController {
 
     def getUsuario() {
         Usuario usuario = Usuario.get(params.id)
-        render usuario as JSON
+        Map retorno = [:]
+        retorno.usuario = usuario
+        retorno.permissoes = usuario.getAuthorities()
+
+        render retorno as JSON
     }
 
     def listarUsuario() {

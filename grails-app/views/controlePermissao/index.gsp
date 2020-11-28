@@ -66,8 +66,12 @@
                     url: "getUsuario",
                     data: { "id": id },
                     success: function(data) {
-                        $("#formUsuario input[name = login]").val(data.username)
-                        $("#formUsuario input[name = id]").val(data.id)
+                        $("#formUsuario input[name = login]").val(data.usuario.username)
+                        $("#formUsuario input[name = id]").val(data.usuario.id)
+                        $("#divDetalhesUsuarios").html("")
+                        data.permissoes.forEach(permissao => {
+                            $("#divDetalhesUsuarios").append(permissao.authority + "<br/>")
+                        })
                     }
                 })
             }
